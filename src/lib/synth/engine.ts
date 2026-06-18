@@ -185,4 +185,8 @@ export class SynthEngine {
   getParams(): SynthParams | null {
     return this.params;
   }
+
+  isReady(): boolean {
+    return this.initialized;
+  }
 }

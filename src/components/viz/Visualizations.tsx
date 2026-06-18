@@ -3,13 +3,26 @@
 import { motion } from 'framer-motion';
 import { useEffect, useRef } from 'react';
 import { getSynthEngine } from '@/lib/synth/engine';
+import { useSynthStore } from '@/lib/store/synth-store';
+
+function drawIdleLine(ctx: CanvasRenderingContext2D, w: number, h: number, color: string) {
+  ctx.fillStyle = '#0a0a0b';
+  ctx.fillRect(0, 0, w, h);
+  ctx.strokeStyle = color;
+  ctx.lineWidth = 2 * devicePixelRatio;
+  ctx.beginPath();
+  ctx.moveTo(0, h / 2);
+  ctx.lineTo(w, h / 2);
+  ctx.stroke();
+}
 
 export function Oscilloscope() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const engineReady = useSynthStore((s) => s.engineReady);
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
+    if (!canvas || !engineReady) return;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
     let raf: number;
@@ -19,7 +32,19 @@ export function Oscilloscope() {
       raf = requestAnimationFrame(draw);
       const w = (canvas.width = canvas.clientWidth * devicePixelRatio);
       const h = (canvas.height = canvas.clientHeight * devicePixelRatio);
-      const wf = engine.getWaveform().getValue();
+
+      if (!engine.isReady()) {
+        drawIdleLine(ctx, w, h, '#38bdf8');
+        return;
+      }
+
+      const waveform = engine.getWaveform();
+      if (!waveform) {
+        drawIdleLine(ctx, w, h, '#38bdf8');
+        return;
+      }
+
+      const wf = waveform.getValue();
       ctx.fillStyle = '#0a0a0b';
       ctx.fillRect(0, 0, w, h);
       ctx.strokeStyle = '#38bdf8';
@@ -36,7 +61,7 @@ export function Oscilloscope() {
     };
     draw();
     return () => cancelAnimationFrame(raf);
-  }, []);
+  }, [engineReady]);
 
   return (
     <div className="glass-panel p-3 h-full flex flex-col">
@@ -48,10 +73,11 @@ export function Oscilloscope() {
 
 export function SpectrumAnalyzer() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const engineReady = useSynthStore((s) => s.engineReady);
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
+    if (!canvas || !engineReady) return;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
     let raf: number;
@@ -61,7 +87,19 @@ export function SpectrumAnalyzer() {
       raf = requestAnimationFrame(draw);
       const w = (canvas.width = canvas.clientWidth * devicePixelRatio);
       const h = (canvas.height = canvas.clientHeight * devicePixelRatio);
-      const fft = engine.getFFT().getValue();
+
+      if (!engine.isReady()) {
+        drawIdleLine(ctx, w, h, '#14b8a6');
+        return;
+      }
+
+      const fftNode = engine.getFFT();
+      if (!fftNode) {
+        drawIdleLine(ctx, w, h, '#14b8a6');
+        return;
+      }
+
+      const fft = fftNode.getValue();
       ctx.fillStyle = '#0a0a0b';
       ctx.fillRect(0, 0, w, h);
       const barW = w / fft.length;
@@ -76,7 +114,7 @@ export function SpectrumAnalyzer() {
     };
     draw();
     return () => cancelAnimationFrame(raf);
-  }, []);
+  }, [engineReady]);
 
   return (
     <div className="glass-panel p-3 h-full flex flex-col">
