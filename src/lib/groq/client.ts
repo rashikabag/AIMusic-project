@@ -2,7 +2,16 @@ import Groq from 'groq-sdk';
 import type { SynthParams } from '../synth/types';
 import { formatSynthContext } from '../synth/helpers';
 
-const MODEL = 'llama-3.3-70b-versatile';
+const DEFAULT_MODELS = [
+  'openai/gpt-oss-120b',
+  'openai/gpt-oss-20b',
+  'llama-3.3-70b-versatile',
+] as const;
+
+export function getGroqModels(): string[] {
+  const fromEnv = process.env.GROQ_MODELS?.split(',').map((m) => m.trim()).filter(Boolean);
+  return fromEnv?.length ? fromEnv : [...DEFAULT_MODELS];
+}
 
 function getClient(): Groq {
   const apiKey = process.env.GROQ_API_KEY;
@@ -10,18 +19,48 @@ function getClient(): Groq {
   return new Groq({ apiKey });
 }
 
+type ChatParams = {
+  messages: Groq.Chat.Completions.ChatCompletionMessageParam[];
+  temperature: number;
+  max_tokens: number;
+  response_format?: { type: 'json_object' };
+};
+
+async function completeWithFallback(params: ChatParams): Promise<{ content: string; model: string }> {
+  const client = getClient();
+  const models = getGroqModels();
+  let lastError: unknown;
+
+  for (const model of models) {
+    try {
+      const completion = await client.chat.completions.create({
+        model,
+        messages: params.messages,
+        temperature: params.temperature,
+        max_tokens: params.max_tokens,
+        ...(params.response_format ? { response_format: params.response_format } : {}),
+      });
+      const content = completion.choices[0]?.message?.content ?? '';
+      if (content) return { content, model };
+    } catch (err) {
+      lastError = err;
+      console.warn(`Groq model ${model} failed, trying next…`, err);
+    }
+  }
+
+  throw lastError instanceof Error ? lastError : new Error('All Groq models failed');
+}
+
 export async function groqChat(
   systemPrompt: string,
   userMessage: string,
   synthParams?: SynthParams,
 ): Promise<string> {
-  const client = getClient();
   const contextBlock = synthParams
     ? `\n\nCurrent synth settings:\n${formatSynthContext(synthParams)}`
     : '';
 
-  const completion = await client.chat.completions.create({
-    model: MODEL,
+  const { content } = await completeWithFallback({
     messages: [
       { role: 'system', content: systemPrompt + contextBlock },
       { role: 'user', content: userMessage },
@@ -30,7 +69,7 @@ export async function groqChat(
     max_tokens: 800,
   });
 
-  return completion.choices[0]?.message?.content ?? 'No response generated.';
+  return content || 'No response generated.';
 }
 
 export async function groqJson<T>(
@@ -38,13 +77,11 @@ export async function groqJson<T>(
   userMessage: string,
   synthParams?: SynthParams,
 ): Promise<T> {
-  const client = getClient();
   const contextBlock = synthParams
     ? `\n\nCurrent synth settings:\n${formatSynthContext(synthParams)}`
     : '';
 
-  const completion = await client.chat.completions.create({
-    model: MODEL,
+  const { content } = await completeWithFallback({
     messages: [
       {
         role: 'system',
@@ -60,8 +97,7 @@ export async function groqJson<T>(
     response_format: { type: 'json_object' },
   });
 
-  const raw = completion.choices[0]?.message?.content ?? '{}';
-  return JSON.parse(raw) as T;
+  return JSON.parse(content || '{}') as T;
 }
 
 export const TUTOR_SYSTEM = `You are an expert synthesizer tutor and music producer inside "AI Synth Tutor".

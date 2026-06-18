@@ -7,7 +7,7 @@ Premium interactive synthesizer learning platform with a virtual subtractive syn
 - **Next.js 15** (App Router) — frontend + API routes
 - **TypeScript** · **Tailwind CSS** · **Framer Motion**
 - **Tone.js** + Web Audio API
-- **Groq** (`llama-3.3-70b-versatile`) for AI tutor, coach, presets, sound matching
+- **Groq** (fallback: `openai/gpt-oss-120b` → `openai/gpt-oss-20b` → `llama-3.3-70b-versatile`)
 - **Zustand** for synth + gamification state
 
 ## Quick start
@@ -25,7 +25,9 @@ Open [http://localhost:3000](http://localhost:3000)
 
 1. Push to GitHub
 2. Go to [vercel.com/new](https://vercel.com/new) → import repo
-3. Add environment variable: `GROQ_API_KEY`
+3. Add environment variables:
+   - `GROQ_API_KEY`
+   - `GROQ_MODELS` = `openai/gpt-oss-120b,openai/gpt-oss-20b,llama-3.3-70b-versatile`
 4. Deploy (Next.js auto-detected)
 
 ## Features
@@ -49,6 +51,7 @@ Open [http://localhost:3000](http://localhost:3000)
 | Variable | Required | Description |
 |----------|----------|-------------|
 | `GROQ_API_KEY` | Yes (for AI) | Free at [console.groq.com](https://console.groq.com) |
+| `GROQ_MODELS` | No | Comma-separated model IDs (fallback order). Default: `openai/gpt-oss-120b,openai/gpt-oss-20b,llama-3.3-70b-versatile` |
 
 ## Project structure
 
