@@ -1,83 +1,68 @@
-# WaveCraft DAW — Synth Evolution Edition
+# AI Synth Tutor
 
-100% local interactive Micro-DAW and synthesis sandbox (TypeScript).
+Premium interactive synthesizer learning platform with a virtual subtractive synth, real-time visualizations, and **Groq AI** tutoring.
 
 ## Stack
 
-- **Frontend:** Vite + TypeScript + Web Audio API (`client/`)
-- **Backend:** Express (local dev) + Vercel Serverless Functions (production)
-- **AI loops:** Local Ollama when self-hosted; smart fallback on Vercel free tier
+- **Next.js 15** (App Router) — frontend + API routes
+- **TypeScript** · **Tailwind CSS** · **Framer Motion**
+- **Tone.js** + Web Audio API
+- **Groq** (`llama-3.3-70b-versatile`) for AI tutor, coach, presets, sound matching
+- **Zustand** for synth + gamification state
 
-## Quick start (local)
+## Quick start
 
 ```bash
 npm install
+cp .env.example .env.local
+# Add your free Groq API key from https://console.groq.com
 npm run dev
 ```
 
-- **UI:** http://127.0.0.1:5173
-- **API:** http://127.0.0.1:8000
+Open [http://localhost:3000](http://localhost:3000)
 
 ## Deploy free on Vercel
 
-### 1. Push this repo to GitHub
+1. Push to GitHub
+2. Go to [vercel.com/new](https://vercel.com/new) → import repo
+3. Add environment variable: `GROQ_API_KEY`
+4. Deploy (Next.js auto-detected)
 
-Already at [github.com/rashikabag/AIMusic-project](https://github.com/rashikabag/AIMusic-project).
+## Features
 
-### 2. Import into Vercel
+| Feature | Description |
+|---------|-------------|
+| **Virtual Synth** | Oscillator, mixer, filter, ADSR, LFO, effects, master |
+| **88-key Keyboard** | Mouse, QWERTY, MIDI, touch, sustain pedal |
+| **Visualizations** | Oscilloscope, spectrum, ADSR, filter response, LFO |
+| **AI Tutor** | Chat with Groq — answers use your live synth settings |
+| **Live Coach** | Real-time feedback as you tweak parameters |
+| **Lessons** | Step-by-step validated challenges (Build a Bass, etc.) |
+| **Challenge Mode** | Recreate target sounds, scored by AI logic |
+| **Preset Generator** | Natural language → full synth patch via Groq |
+| **Sound Match** | Upload audio → estimated preset |
+| **Ear Training** | Waveform / filter / envelope quizzes |
+| **Gamification** | XP, levels, streaks, achievements |
 
-1. Go to [vercel.com/new](https://vercel.com/new) and sign in with GitHub.
-2. Click **Import** next to `AIMusic-project`.
-3. Vercel reads `vercel.json` automatically:
-   - **Build command:** `npm run build:vercel`
-   - **Output directory:** `dist/client`
-4. Click **Deploy** (Hobby plan is free).
+## Environment
 
-Your app will be live at `https://your-project.vercel.app`.
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `GROQ_API_KEY` | Yes (for AI) | Free at [console.groq.com](https://console.groq.com) |
 
-### What works on Vercel (free)
+## Project structure
 
-| Feature | Vercel | Local `npm run dev` |
-|---------|--------|---------------------|
-| Micro-DAW + Web Audio | ✅ Browser-only | ✅ |
-| Museum + presets | ✅ `/api/historical-presets` | ✅ |
-| Preset Builder Game | ✅ | ✅ |
-| AI loop generator | ✅ Fallback patterns | ✅ Ollama + fallback |
-
-**Important:** Vercel cannot run Ollama (no local GPU/process). The AI drawer uses built-in genre-aware fallback patterns on Vercel — still free, no API keys.
-
-### Optional: remote Ollama
-
-If you host Ollama elsewhere (e.g. a VPS or [Ollama cloud tunnel](https://ollama.com)), add a Vercel env var:
-
-| Variable | Example |
-|----------|---------|
-| `OLLAMA_BASE_URL` | `https://your-ollama-host.example.com` |
-
-Project → **Settings** → **Environment Variables** → redeploy.
+```
+src/
+  app/           Next.js pages + API routes (/api/ai/*)
+  components/    UI, synth, keyboard, visualizations
+  lib/           Synth engine, Groq client, lessons, stores
+```
 
 ## Scripts
 
 | Command | Description |
 |---------|-------------|
-| `npm run dev` | Local API + Vite dev server |
-| `npm run build:vercel` | Build static frontend for Vercel |
-| `npm run build` | Full local production build |
-| `npm start` | Local Express production server |
-
-## Project layout
-
-```
-client/          Vite frontend (TypeScript)
-server/          Shared logic (presets, Ollama client)
-api/             Vercel serverless routes
-vercel.json      Vercel build + API rewrites
-```
-
-## Optional: Ollama (local only)
-
-```bash
-ollama pull llama3.1
-```
-
-Then run `npm run dev` — `/generate-loop` calls your local Ollama at `127.0.0.1:11434`.
+| `npm run dev` | Development server |
+| `npm run build` | Production build |
+| `npm start` | Production server |

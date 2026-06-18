@@ -1,5 +1,8 @@
 node_modules/
+.next/
 dist/
-__pycache__/
+out/
 *.log
 .DS_Store
+.env*.local
+__pycache__/

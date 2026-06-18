@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-inter: 'Inter', system-ui, sans-serif;
+  --font-space: 'Space Grotesk', system-ui, sans-serif;
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  @apply bg-surface text-zinc-100 antialiased overflow-hidden;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(56, 189, 248, 0.08), transparent),
+    radial-gradient(ellipse 60% 40% at 100% 100%, rgba(249, 115, 22, 0.06), transparent);
+}
+
+.glass {
+  @apply bg-surface-glass backdrop-blur-xl border border-zinc-800/80 shadow-glow;
+}
+
+.glass-panel {
+  @apply glass rounded-2xl;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-zinc-700 rounded-full;
+}
+
+.knob-ring {
+  background: conic-gradient(from 180deg, #38bdf8, #14b8a6, #f97316, #38bdf8);
+}
+
+input[type='range'] {
+  @apply appearance-none h-1.5 rounded-full bg-zinc-800 outline-none;
+}
+input[type='range']::-webkit-slider-thumb {
+  @apply appearance-none w-3.5 h-3.5 rounded-full bg-accent-teal shadow-glow cursor-pointer;
+}
+
+@keyframes key-press {
+  0% { transform: scaleY(1); }
+  50% { transform: scaleY(0.96); }
+  100% { transform: scaleY(1); }
+}
+.key-pressed {
+  animation: key-press 0.1s ease-out;
+}
