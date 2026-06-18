@@ -37,9 +37,20 @@ export class SynthEngine {
   private fft!: Tone.FFT;
   private params: SynthParams | null = null;
 
-  async init(): Promise<void> {
-    if (this.initialized) return;
+  async ensureRunning(): Promise<void> {
     await Tone.start();
+    const ctx = Tone.getContext().rawContext as AudioContext;
+    if (ctx.state === 'suspended') {
+      await ctx.resume();
+    }
+  }
+
+  async init(): Promise<void> {
+    if (this.initialized) {
+      await this.ensureRunning();
+      return;
+    }
+    await this.ensureRunning();
 
     this.masterGain = new Tone.Gain(0.7).toDestination();
     this.analyser = new Tone.Analyser('waveform', 1024);
@@ -157,6 +168,7 @@ export class SynthEngine {
 
   noteOn(midi: number, velocity = 100, time?: number): void {
     if (!this.initialized || !this.params) return;
+    void this.ensureRunning();
     const t = time ?? Tone.now();
     const freq = Tone.Frequency(midi + this.params.oscillator.octave * 12, 'midi').toFrequency();
     this.poly.triggerAttack(freq, t, velocity / 127);

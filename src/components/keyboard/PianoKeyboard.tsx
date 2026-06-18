@@ -34,9 +34,11 @@ export function PianoKeyboard() {
   }, []);
 
   const noteOn = useCallback(
-    (midi: number, velocity = 100) => {
+    async (midi: number, velocity = 100) => {
+      const engine = getSynthEngine();
       if (!engineReady) return;
-      getSynthEngine().noteOn(midi, velocity);
+      await engine.ensureRunning();
+      engine.noteOn(midi, velocity);
       setActiveNote(midi, velocity);
       unlockAchievement('first-note');
     },

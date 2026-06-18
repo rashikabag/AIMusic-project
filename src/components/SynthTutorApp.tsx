@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { AudioUnlockGate } from '@/components/audio/AudioUnlockGate';
 import { TopNav } from '@/components/layout/TopNav';
 import { LeftPanel } from '@/components/layout/LeftPanel';
 import { CenterPanel } from '@/components/layout/CenterPanel';
@@ -13,7 +14,6 @@ import type { SynthParams } from '@/lib/synth/types';
 
 export function SynthTutorApp() {
   const params = useSynthStore((s) => s.params);
-  const setEngineReady = useSynthStore((s) => s.setEngineReady);
   const addCoachMessage = useSynthStore((s) => s.addCoachMessage);
   const checkStreak = useUserStore((s) => s.checkStreak);
   const prevParams = useRef<SynthParams>(params);
@@ -22,16 +22,6 @@ export function SynthTutorApp() {
   useEffect(() => {
     checkStreak();
   }, [checkStreak]);
-
-  useEffect(() => {
-    const init = async () => {
-      const engine = getSynthEngine();
-      await engine.init();
-      engine.applyParams(params);
-      setEngineReady(true);
-    };
-    init();
-  }, [setEngineReady]);
 
   useEffect(() => {
     if (!useSynthStore.getState().engineReady) return;
@@ -66,17 +56,19 @@ export function SynthTutorApp() {
   }, [params, addCoachMessage]);
 
   return (
-    <div className="h-screen flex flex-col">
-      <TopNav />
-      <div className="flex-1 flex gap-3 p-3 min-h-0 overflow-hidden">
-        <LeftPanel />
-        <CenterPanel />
-        <RightPanel />
+    <AudioUnlockGate>
+      <div className="h-screen flex flex-col">
+        <TopNav />
+        <div className="flex-1 flex gap-3 p-3 min-h-0 overflow-hidden">
+          <LeftPanel />
+          <CenterPanel />
+          <RightPanel />
+        </div>
+        <div className="px-3 pb-3 shrink-0">
+          <PianoKeyboard />
+        </div>
       </div>
-      <div className="px-3 pb-3 shrink-0">
-        <PianoKeyboard />
-      </div>
-    </div>
+    </AudioUnlockGate>
   );
 }
 

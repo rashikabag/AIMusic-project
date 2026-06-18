@@ -40,9 +40,11 @@ export function EarTrainingPanel() {
     if (!engineReady) return;
     const snap = snapshotForAnswer(q.type, q.answer);
     loadPreset(snap);
-    setTimeout(() => {
-      getSynthEngine().noteOn(60, 100);
-      setTimeout(() => getSynthEngine().noteOff(60), 800);
+    setTimeout(async () => {
+      const engine = getSynthEngine();
+      await engine.ensureRunning();
+      engine.noteOn(60, 100);
+      setTimeout(() => engine.noteOff(60), 800);
     }, 100);
   };
 
