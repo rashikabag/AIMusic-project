@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WaveCraft DAW — Synth Evolution Edition</title>
+  <link rel="stylesheet" href="/src/styles.css" />
+</head>
+<body>
+  <header>
+    <div>
+      <h1>WaveCraft DAW</h1>
+      <div class="subtitle">Synth Evolution Edition · 100% Local · TypeScript</div>
+    </div>
+    <div class="transport">
+      <label>BPM <span id="bpmVal">120</span></label>
+      <input type="range" id="bpm" min="60" max="200" value="120" />
+      <button class="btn" id="btnPlay">▶ Play</button>
+      <button class="btn" id="btnStop">■ Stop</button>
+    </div>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab active" data-tab="daw">① Micro-DAW Grid</button>
+    <button class="tab" data-tab="museum">② Synth Evolution Museum</button>
+    <button class="tab" data-tab="game">③ Preset Builder Game</button>
+  </nav>
+
+  <main>
+    <section id="dash-daw" class="dashboard active">
+      <div class="grid-2">
+        <div class="card">
+          <h3>Oscilloscope</h3>
+          <canvas id="scope"></canvas>
+        </div>
+        <div class="card">
+          <h3>Synth Engine — <span id="activeTrackLabel">Bass</span></h3>
+          <div class="track-tabs" id="trackTabs">
+            <button class="track-tab bass active" data-track="bass">Bass</button>
+            <button class="track-tab pad" data-track="pad">Pad</button>
+            <button class="track-tab lead" data-track="lead">Lead</button>
+            <button class="track-tab fx" data-track="fx">FX</button>
+          </div>
+          <div class="synth-controls" id="synthControls"></div>
+        </div>
+      </div>
+      <div class="card sequencer" style="margin-top:1rem">
+        <h3>4-Track × 16-Step Matrix</h3>
+        <div id="sequencerGrid"></div>
+      </div>
+    </section>
+
+    <section id="dash-museum" class="dashboard">
+      <h3 style="margin-bottom:1rem;color:var(--purple)">Synth Evolution Timeline</h3>
+      <div class="timeline" id="timeline"></div>
+      <div class="card">
+        <h3>Historical Context</h3>
+        <div class="museum-panel" id="museumPanel">
+          Select an era above to explore how legendary artists shaped electronic music.
+        </div>
+      </div>
+    </section>
+
+    <section id="dash-game" class="dashboard">
+      <div class="game-layout">
+        <div class="card">
+          <h3>Guided Challenge</h3>
+          <select class="challenge-select" id="challengeSelect"></select>
+          <button class="btn primary" id="btnStartChallenge" style="width:100%">Start Challenge</button>
+          <ul class="checklist" id="checklist" style="margin-top:1rem"></ul>
+          <div class="success-banner" id="successBanner">
+            🎉 Patch Authenticated! Famous loop loaded on the matrix.
+          </div>
+        </div>
+        <div class="card">
+          <h3>Challenge Synth — <span id="gameTrackLabel">Bass</span></h3>
+          <div class="synth-controls" id="gameSynthControls"></div>
+          <p style="margin-top:1rem;font-size:0.8rem;color:var(--muted)" id="gameHint">
+            Start a challenge to begin the step-by-step sound design tutorial.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <aside class="ai-drawer" id="aiDrawer">
+    <h4 id="aiToggle">✦ Local AI Historian (Ollama)</h4>
+    <textarea id="aiPrompt" placeholder="e.g. dark 80s synthwave with heavy 808..."></textarea>
+    <button class="btn primary" id="btnGenerate" style="width:100%;margin-top:0.5rem">Generate Loop</button>
+    <div class="ai-status" id="aiStatus">POST → /generate-loop (Express :8000)</div>
+  </aside>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>

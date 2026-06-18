@@ -1,0 +1,1056 @@
+{
+  "presets": [
+    {
+      "id": "thriller-bass",
+      "name": "Thriller Bass",
+      "year": 1982,
+      "artist": "Michael Jackson",
+      "producer": "Quincy Jones",
+      "hardware": "Moog Minimoog Model D",
+      "era": "1970s-analog",
+      "track": "bass",
+      "description": "Quincy Jones layered a tight, percussive Moog bass under 'Thriller' to anchor the groove without muddying the kick. Short filter envelopes created that iconic punch.",
+      "targets": {
+        "waveform": "sawtooth",
+        "frequency": 55,
+        "cutoff": 420,
+        "resonance": 3.5,
+        "stutterRate": 0
+      },
+      "tolerances": {
+        "frequency": 12,
+        "cutoff": 80,
+        "resonance": 1.5,
+        "stutterRate": 0
+      },
+      "steps": [
+        {
+          "id": "waveform",
+          "field": "waveform",
+          "target": "sawtooth",
+          "instruction": "Step 1: Set the waveform to Sawtooth \u2014 the raw harmonic stack Moog oscillators are famous for.",
+          "theory": "Sawtooth waves contain every integer harmonic, giving analog bass its 'buzz' before filtering shapes the tone."
+        },
+        {
+          "id": "frequency",
+          "field": "frequency",
+          "target": 55,
+          "instruction": "Step 2: Tune frequency near 55 Hz (A1) \u2014 the sub-fundamental Quincy locked to the kick.",
+          "theory": "Placing bass an octave below the root leaves headroom for vocals and guitars in the midrange."
+        },
+        {
+          "id": "cutoff",
+          "field": "cutoff",
+          "target": 420,
+          "instruction": "Step 3: Drag Cutoff below 500 Hz to shave harsh highs and reveal warm body.",
+          "theory": "Excellent. By lowering the cutoff, you removed brittle upper harmonics, leaving the sub-heavy fundamental Jones used on Thriller."
+        },
+        {
+          "id": "resonance",
+          "field": "resonance",
+          "target": 3.5,
+          "instruction": "Step 4: Add slight Resonance (~3.5) for a vocal 'wah' peek at the filter sweet spot.",
+          "theory": "A modest resonance bump emphasizes the cutoff frequency \u2014 the classic Moog 'squelch' without whistling."
+        }
+      ],
+      "successSequence": {
+        "bpm": 118,
+        "tracks": {
+          "bass": [
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            0
+          ],
+          "pad": [
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          "lead": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "fx": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "808-sub",
+      "name": "808 Sub",
+      "year": 1983,
+      "artist": "Afrika Bambaataa / Marvin Gaye lineage",
+      "producer": "Various (Roland TR-808)",
+      "hardware": "Roland TR-808 Bass Drum Circuit",
+      "era": "1980s-roland",
+      "track": "bass",
+      "description": "The TR-808 bass drum was never meant to be a sub-bass instrument \u2014 but hip-hop and electro producers discovered its long decay tail could carry an entire track's low end.",
+      "targets": {
+        "waveform": "sine",
+        "frequency": 50,
+        "cutoff": 180,
+        "resonance": 1,
+        "stutterRate": 0
+      },
+      "tolerances": {
+        "frequency": 10,
+        "cutoff": 60,
+        "resonance": 1,
+        "stutterRate": 0
+      },
+      "steps": [
+        {
+          "id": "waveform",
+          "field": "waveform",
+          "target": "sine",
+          "instruction": "Step 1: Select Sine wave \u2014 the pure tone of the 808's resonant bridged-T network.",
+          "theory": "A sine has no overtones; it's the cleanest sub foundation for club systems."
+        },
+        {
+          "id": "frequency",
+          "field": "frequency",
+          "target": 50,
+          "instruction": "Step 2: Set frequency around 50 Hz for chest-rattling sub.",
+          "theory": "808 kicks often sit between 45\u201360 Hz depending on sample decay and pitch sweep."
+        },
+        {
+          "id": "cutoff",
+          "field": "cutoff",
+          "target": 180,
+          "instruction": "Step 3: Cutoff below 200 Hz \u2014 isolate only sub energy.",
+          "theory": "Rolling off everything above 200 Hz keeps the 808 from fighting snares and hi-hats."
+        },
+        {
+          "id": "resonance",
+          "field": "resonance",
+          "target": 1,
+          "instruction": "Step 4: Keep Resonance low (~1) for a soft, rounded 808 bloom.",
+          "theory": "The original 808 circuit had gentle resonance \u2014 too much sounds like a synth, not a drum."
+        }
+      ],
+      "successSequence": {
+        "bpm": 130,
+        "tracks": {
+          "bass": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          "pad": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "lead": [
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          "fx": [
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "909-kick",
+      "name": "909 Kick",
+      "year": 1984,
+      "artist": "Frankie Knuckles / Daft Punk lineage",
+      "producer": "Chicago House / French Touch",
+      "hardware": "Roland TR-909",
+      "era": "1980s-roland",
+      "track": "fx",
+      "description": "The TR-909 kick is punchier and more 'clicky' than the 808 \u2014 the backbone of house, techno, and rave. Its pitch sweep and short attack cut through dense mixes.",
+      "targets": {
+        "waveform": "triangle",
+        "frequency": 62,
+        "cutoff": 320,
+        "resonance": 2,
+        "stutterRate": 0
+      },
+      "tolerances": {
+        "frequency": 15,
+        "cutoff": 100,
+        "resonance": 1.5,
+        "stutterRate": 0
+      },
+      "steps": [
+        {
+          "id": "waveform",
+          "field": "waveform",
+          "target": "triangle",
+          "instruction": "Step 1: Choose Triangle \u2014 approximates the 909's pitched oscillator sweep attack.",
+          "theory": "Triangle waves are brighter than sine but softer than square \u2014 ideal for punchy kicks."
+        },
+        {
+          "id": "frequency",
+          "field": "frequency",
+          "target": 62,
+          "instruction": "Step 2: Frequency near 62 Hz for a tight four-on-the-floor thump.",
+          "theory": "909 kicks typically tune higher than 808s for dancefloor clarity on smaller speakers."
+        },
+        {
+          "id": "cutoff",
+          "field": "cutoff",
+          "target": 320,
+          "instruction": "Step 3: Cutoff around 300 Hz preserves click while trimming mud.",
+          "theory": "House producers leave a little mid 'click' so kicks translate on laptop speakers."
+        },
+        {
+          "id": "stutter",
+          "field": "stutterRate",
+          "target": 0,
+          "instruction": "Step 4: Stutter Rate at 0 \u2014 a 909 kick is a single transient, not a gated effect.",
+          "theory": "Unlike FX tracks, classic 909 patterns rely on grid placement, not stutter."
+        }
+      ],
+      "successSequence": {
+        "bpm": 128,
+        "tracks": {
+          "bass": [
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          "pad": [
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          "lead": [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "fx": [
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "prince-purple-lead",
+      "name": "Purple Rain Lead",
+      "year": 1984,
+      "artist": "Prince",
+      "producer": "Prince (The Revolution)",
+      "hardware": "Oberheim OB-Xa / Yamaha DX7",
+      "era": "1980s-roland",
+      "track": "lead",
+      "description": "Prince blended analog saws with digital FM shimmer on 'Purple Rain'. The lead cuts through with controlled resonance and a mid-high fundamental.",
+      "targets": {
+        "waveform": "square",
+        "frequency": 440,
+        "cutoff": 2200,
+        "resonance": 5,
+        "stutterRate": 0
+      },
+      "tolerances": {
+        "frequency": 30,
+        "cutoff": 400,
+        "resonance": 2,
+        "stutterRate": 0
+      },
+      "steps": [
+        {
+          "id": "waveform",
+          "field": "waveform",
+          "target": "square",
+          "instruction": "Step 1: Square waveform for hollow, vocal-like lead harmonics.",
+          "theory": "Square waves emphasize odd harmonics \u2014 similar to clarinet / vocal formant character."
+        },
+        {
+          "id": "frequency",
+          "field": "frequency",
+          "target": 440,
+          "instruction": "Step 2: Set frequency to 440 Hz (concert A) \u2014 Prince's soaring solo register.",
+          "theory": "Leads often sit 2\u20133 octaves above bass so melodies remain intelligible."
+        },
+        {
+          "id": "cutoff",
+          "field": "cutoff",
+          "target": 2200,
+          "instruction": "Step 3: Open cutoff to ~2200 Hz for brightness without harshness.",
+          "theory": "A partially open filter lets harmonics through while resonance adds expressive 'cry'."
+        },
+        {
+          "id": "resonance",
+          "field": "resonance",
+          "target": 5,
+          "instruction": "Step 4: Resonance near 5 for that singing filter sweep.",
+          "theory": "Prince used filter automation live \u2014 resonance is the 'voice' of the synth solo."
+        }
+      ],
+      "successSequence": {
+        "bpm": 112,
+        "tracks": {
+          "bass": [
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0
+          ],
+          "pad": [
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0
+          ],
+          "lead": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "fx": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "kraftwerk-moog-pad",
+      "name": "Autobahn Pad",
+      "year": 1974,
+      "artist": "Kraftwerk",
+      "producer": "Ralf H\u00fctter / Florian Schneider",
+      "hardware": "Moog Modular / Minimoog",
+      "era": "1970s-analog",
+      "track": "pad",
+      "description": "Kraftwerk's 'Autobahn' used slow-evolving Moog pads to evoke motorway hypnosis \u2014 long attack, low-pass filtering, minimal movement.",
+      "targets": {
+        "waveform": "sawtooth",
+        "frequency": 110,
+        "cutoff": 650,
+        "resonance": 1.5,
+        "stutterRate": 0
+      },
+      "tolerances": {
+        "frequency": 20,
+        "cutoff": 150,
+        "resonance": 1,
+        "stutterRate": 0
+      },
+      "steps": [
+        {
+          "id": "waveform",
+          "field": "waveform",
+          "target": "sawtooth",
+          "instruction": "Step 1: Sawtooth pad \u2014 the warm blanket of early German electronic music.",
+          "theory": "Thick saw stacks through a low-pass filter defined the 'cosmic' pad sound of the 70s."
+        },
+        {
+          "id": "frequency",
+          "field": "frequency",
+          "target": 110,
+          "instruction": "Step 2: Frequency near 110 Hz (A2) for a dark, foundational pad.",
+          "theory": "Pads sit between bass and lead \u2014 filling spectral space without stealing focus."
+        },
+        {
+          "id": "cutoff",
+          "field": "cutoff",
+          "target": 650,
+          "instruction": "Step 3: Cutoff ~650 Hz \u2014 muffled motorway dusk timbre.",
+          "theory": "Kraftwerk deliberately kept pads dark; brightness came from arpeggiated leads on top."
+        },
+        {
+          "id": "resonance",
+          "field": "resonance",
+          "target": 1.5,
+          "instruction": "Step 4: Minimal resonance for smooth, non-aggressive texture.",
+          "theory": "Low resonance avoids 'peaky' filters \u2014 essential for ambient, hypnotic beds."
+        }
+      ],
+      "successSequence": {
+        "bpm": 100,
+        "tracks": {
+          "bass": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          "pad": [
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          "lead": [
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          "fx": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "fm-pop-lead",
+      "name": "FM Bright Pop Lead",
+      "year": 1991,
+      "artist": "Whitney Houston / C&C Music Factory era",
+      "producer": "David Cole / Robert Clivill\u00e9s",
+      "hardware": "Yamaha DX7 / TX81Z",
+      "era": "1990s-fm",
+      "track": "lead",
+      "description": "1990s pop and house adopted FM synthesis for glassy, bell-like leads that cut through dense productions without harsh analog sizzle.",
+      "targets": {
+        "waveform": "square",
+        "frequency": 523,
+        "cutoff": 4800,
+        "resonance": 4,
+        "stutterRate": 2
+      },
+      "tolerances": {
+        "frequency": 40,
+        "cutoff": 600,
+        "resonance": 2,
+        "stutterRate": 1
+      },
+      "steps": [
+        {
+          "id": "waveform",
+          "field": "waveform",
+          "target": "square",
+          "instruction": "Step 1: Square wave approximates FM bell brightness in our subtractive sandbox.",
+          "theory": "DX7 operators create complex spectra; square + high cutoff mimics the 'digital shine'."
+        },
+        {
+          "id": "frequency",
+          "field": "frequency",
+          "target": 523,
+          "instruction": "Step 2: Frequency ~523 Hz (C5) \u2014 pop hook territory.",
+          "theory": "FM leads in the 90s often occupied the 500 Hz\u20132 kHz 'presence' zone."
+        },
+        {
+          "id": "cutoff",
+          "field": "cutoff",
+          "target": 4800,
+          "instruction": "Step 3: Wide-open cutoff (~4800 Hz) for digital brilliance.",
+          "theory": "FM patches rely on high-frequency content; filtering was minimal in chart pop leads."
+        },
+        {
+          "id": "stutter",
+          "field": "stutterRate",
+          "target": 2,
+          "instruction": "Step 4: Light Stutter (2) for rhythmic 90s gate-chop flavor.",
+          "theory": "Dance-pop producers gated and chopped FM stabs for syncopated hooks."
+        }
+      ],
+      "successSequence": {
+        "bpm": 122,
+        "tracks": {
+          "bass": [
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0
+          ],
+          "pad": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          "lead": [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1
+          ],
+          "fx": [
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0
+          ]
+        }
+      }
+    }
+  ],
+  "museumEras": {
+    "1970s-analog": {
+      "title": "1970s \u2014 Moog Analog Revolution",
+      "baseline": {
+        "bpm": 110,
+        "activeTrack": "bass",
+        "params": {
+          "waveform": "sawtooth",
+          "frequency": 82,
+          "cutoff": 500,
+          "resonance": 4,
+          "stutterRate": 0
+        },
+        "tracks": {
+          "bass": [
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0
+          ],
+          "pad": [
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0
+          ],
+          "lead": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "fx": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    "1980s-roland": {
+      "title": "1980s \u2014 Roland 808/909 Machine Groove",
+      "baseline": {
+        "bpm": 120,
+        "activeTrack": "fx",
+        "params": {
+          "waveform": "triangle",
+          "frequency": 60,
+          "cutoff": 350,
+          "resonance": 2,
+          "stutterRate": 0
+        },
+        "tracks": {
+          "bass": [
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          "pad": [
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          "lead": [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "fx": [
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0
+          ]
+        }
+      }
+    },
+    "1990s-fm": {
+      "title": "1990s \u2014 Digital FM & Bright Pop",
+      "baseline": {
+        "bpm": 124,
+        "activeTrack": "lead",
+        "params": {
+          "waveform": "square",
+          "frequency": 440,
+          "cutoff": 4000,
+          "resonance": 3,
+          "stutterRate": 1
+        },
+        "tracks": {
+          "bass": [
+            1,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          "pad": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          "lead": [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0
+          ],
+          "fx": [
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0
+          ]
+        }
+      }
+    }
+  }
+}
