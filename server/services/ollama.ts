@@ -1,7 +1,13 @@
 import type { GenerateLoopResponse, TrackGrid } from '../types.js';
 
-const OLLAMA_BASE = 'http://127.0.0.1:11434';
+const OLLAMA_BASE = process.env.OLLAMA_BASE_URL ?? 'http://127.0.0.1:11434';
 const OLLAMA_MODELS = ['llama3.1', 'mistral', 'llama3', 'llama3.2'] as const;
+
+/** Ollama cannot run inside Vercel serverless — skip unless OLLAMA_BASE_URL is set. */
+function shouldSkipOllama(): boolean {
+  if (process.env.OLLAMA_BASE_URL) return false;
+  return process.env.VERCEL === '1';
+}
 
 function emptyGrid(): TrackGrid {
   return { bass: Array(16).fill(0), pad: Array(16).fill(0), lead: Array(16).fill(0), fx: Array(16).fill(0) };
@@ -126,6 +132,17 @@ export async function generateLoop(
   prompt: string,
   modelOverride?: string,
 ): Promise<GenerateLoopResponse> {
+  if (shouldSkipOllama()) {
+    const result = fallbackPattern(prompt);
+    return {
+      bpm: result.bpm,
+      tracks: result.tracks,
+      source: 'local-fallback',
+      model: null,
+      prompt,
+    };
+  }
+
   const model = await resolveOllamaModel(modelOverride);
   let source: GenerateLoopResponse['source'] = 'ollama';
   let result: { bpm: number; tracks: TrackGrid } | null = null;
